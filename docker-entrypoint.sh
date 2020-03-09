@@ -7,6 +7,8 @@ case "$1" in
         exec gunicorn \
             --bind ${HOST-0.0.0.0}:${PORT-5000} \
             --forwarded-allow-ips="${SYNCSERVER_FORWARDED_ALLOW_IPS:-127.0.0.1,172.17.0.1}" \
+            --access-logfile - \
+            --error-logfile - \
             syncserver.wsgi_app
         ;;
 
